@@ -1,0 +1,190 @@
+<html lang="en">
+
+<head>
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gesture Recognition System</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> 
+	<style>
+
+	 ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */'
+  transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+	.bg-dark{
+		background-color: #FF69B4!warning;
+	}
+	
+	#result {
+		color: #8A2BE2;
+	}
+body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHJpgEFCfZ_034ZL98wCwniTHa8Jqp-2aRfFGZVa_bLtVz3r_m&s');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+      }
+      ::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:blue ; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">ship prediction </a>
+        </div>
+    </nav>
+<a href="other.html">HTML Images</a>
+    <div style="background-size:cover" 
+    <div class="container">
+        <div id="content" style="margin-top:2em">
+		<div class="container">
+		  <div class="row">
+			<div class="col-sm-6 bd" >
+			  <h3>Ship Classification Using Image Dataset </h3>
+			  <br>
+			  <p style="font-size:20px,font-type:bold;">Ship classification is defined in Part 0 Chapter 2 of the DNV rules (Det Norske Veritas, 2003) as ‘the process of verifying ship standards against a set of requirements. The requirements are laid down in the rules established by the classification society. Classification implies that the ship is surveyed during construction on the basis of design approval, tested before taken into service and surveyed regularly during its whole operational life until scrapping.’ National authorities (flag authorities) have responsibility for the total safety control of ships flying their national flag. This includes fire protection and fire fighting, lifesaving equipment and safety management systems. Many national authorities have delegated this responsibility to classification societies authorising them to work and certify on their behalf..</p>
+				<img src="data:image/jpeg;base64,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" style="height:250px"class="img-rounded" alt="Gesture">   
+		        </div>
+			<div class="col-sm-6">
+				<div>
+					<h4>SEE THE MAGIC </h4>
+			<form action = "http://localhost:5000/predict" id="upload-file" method="post" enctype="multipart/form-data">
+				<label for="imageUpload" class="upload-label">
+					Choose...
+				</label>
+				<input type="file" name="image"  id="imageUpload" accept=".png, .jpg, .jpeg">
+			</form>
+			<div class="image-section" style="display:none;">
+				<div class="img-preview">
+					<div id="imagePreview">
+					</div>
+				</div>
+						<div>
+					<button type="button" class="btn btn-info btn-lg " id="btn-predict">Click on this to see what type of ship it is!</button>
+					</div>
+					</div>
+					<div class="loader" style="display:none;"></div>
+				 <div>
+				 <h style="color:blue">click the button for more information:</h>
+				 <button onclick="myFunc()">click</button>
+			<script>
+function myFunc() {
+  location.replace("https://www.slideshare.net/ikhulsys/2-ship-classification-and-types")
+}
+</script>
+</div>
+<h3>
+<span id="result"></span>
+</h3>
+<p>click yes if you like it</p>		
+<button onclick="myFunction()">yes</button>
+<script>
+function myFunction() {
+  location.replace("https://giphy.com/gifs/thank-you-jagyasini-singh-kagEGazXo6Z2XfE6mx/fullscreen")
+}
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+ </div>
+                   <b><p style="font-size:120%","color:red">CLICK THE BELOW DROPDOWN:</p></b>
+                      <ul id="myUL">
+                         <li><span class="caret">types of ships</span>
+                            <ul class="nested">
+                               <li>aircraft carrier</li>
+                               <li>bulkers</li>
+                                <li>cruise</li>
+                                <li>drilling rigs</li>
+                                <li>fire fighting vessels</li>
+                                <li>fishing vessels</li>
+                                <li>inland dry cargo vessels</li>
+                                <li>motor yachts</li>
+                                <li>restaurant ships</li>
+                                <li>sub marines</li>
+                     </ul>
+                    </li>
+                   </ul>
+<script>
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
+</script>
+</body>
+
+<footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>    
+</footer>
+
+</html>
